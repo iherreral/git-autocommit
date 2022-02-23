@@ -29,7 +29,7 @@ git status --short >>"$SCRIPTPATH/$LOGFILE"
 # Check what action to take on each file depending on whether it has been deleted, modified or added.
 git status --short |  while read -r stat; do
   if [[ "$stat" =~ ^"D"+.*+$ ]];then #Deleted file
-    git rm "$(echo $stat | awk '{print $2}')">>"$SCRIPTPATH/$LOGFILE"
+    git add "$(echo $stat | awk '{print $2}')">>"$SCRIPTPATH/$LOGFILE"
   elif [[ "$stat" =~ ^"M"+.*+$ ]];then #Modified file
     git add "$(echo $stat | awk '{print $2}')">>"$SCRIPTPATH/$LOGFILE"
   elif [[ "$stat" =~ ^"??"+.*+$ ]];then #Added file
